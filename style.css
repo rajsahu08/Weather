@@ -125,48 +125,62 @@ body {
   margin-left: 10px;
 }
 .footer {
-  border: 2px solid #008000;
+  /* border: 2px solid #008000; */
   display: flex;
+
 }
 .threeDay {
   width: 50%;
-  border: 2px solid yellow;
+  /* border: 2px solid yellow; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 .future{
-  height: 80px;
+  height: 90px;
   width: 90%;
   border: 2px solid white;
   margin: 10px 0;
+  padding: 13px;
   border-radius: 16px;
   background-color: rgba(255, 255, 255, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.date{
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 13px !important;
+}
+.info{
+  margin: 0 10px;
 }
 .thought {
   width: 50%;
-  height: 270px;
-  border: 2px solid red;
+  /* border: 2px solid  red; */
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .card {
   /* height: 80%; */
-  padding: 15px;
-  width: 350px;
-  border: 2px solid black;
+  background-image: url(assets/note.png);
+  background-size: 550px 100%;
+  width: 550px;
+  height: 400px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgba(228, 202, 168, 0.9);
+  font-size: 13px !important;
   border-radius: 16px;
   color: black;
+  font-style: italic;
 }
 .quote {
-  font-size: 20px;
+  width: 50%;
 }
 
 /* Media Queries */
@@ -212,4 +226,20 @@ body {
     height: auto;
   }
 }
+@media (max-width: 1280px) {
+  .footer {
+    flex-direction: column;
+    align-items: center;
+  }
+  .threeDay{
+    width: 90%;
+  }
+  .thought{
+    width: 90%;
+  }
+  .thought {
+    display: none;
+  }
+}
+
 
