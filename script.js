@@ -58,7 +58,7 @@ if (navigator.geolocation) {
     lon = position.coords.longitude;
     console.log("Latitude: " + lat + ", Longitude: " + lon);
     let url = `https://open-weather13.p.rapidapi.com/city/latlon/${lat}/${lon}`;
-    // getWeatherInfo(url);
+    getWeatherInfo(url);
   }, function(error) {
     console.log("Error occurred. Error code: " + error.code);
   });
@@ -72,8 +72,8 @@ let getWeatherInfo = async (url) =>{
   const options = {
     method: 'GET',
     headers: {
-      'x-rapidapi-key': '5bae2b20b3mshfa5923da98afd77p138521jsnce7c2c61fc0e',
-      'x-rapidapi-host': 'open-weather13.p.rapidapi.com'
+      'x-rapidapi-key': 'f7dc614926msh90cfc1454493b1fp188b93jsna7c2f23998f6',
+		'x-rapidapi-host': 'open-weather13.p.rapidapi.com'
     }
   };
   try {
@@ -92,7 +92,7 @@ let getWeatherInfo = async (url) =>{
     humidity.textContent = result.main.humidity;
     visibility.textContent = result.visibility;
     clouds.textContent = result.clouds.all;
-    let url2 = `https://weatherapi-com.p.rapidapi.com/forecast.json?q=${result.location.name}&days=3`;
+    let url2 = `https://open-weather13.p.rapidapi.com/city/fivedaysforcast/${result.coord.lon}/${result.coord.lat}`;
     getWeatherForecast(url2);
   } 
   catch (error) {
@@ -103,28 +103,32 @@ let getWeatherForecast= async(url)=>{
   const options = {
     method: 'GET',
     headers: {
-      'x-rapidapi-key': '5bae2b20b3mshfa5923da98afd77p138521jsnce7c2c61fc0e',
-      'x-rapidapi-host': 'weatherapi-com.p.rapidapi.com'
+      'x-rapidapi-key': 'f7dc614926msh90cfc1454493b1fp188b93jsna7c2f23998f6',
+		'x-rapidapi-host': 'open-weather13.p.rapidapi.com'
     }
   };
   
   try {
     const response = await fetch(url, options);
     const result = await response.json();
-    date1.textContent = await result.forecast.forecastday[0].date;
-    temp1.textContent = await result.forecast.forecastday[0].day.avgtemp_c + "° C";
-    text1.textContent = await result.forecast.forecastday[0].day.condition.text;
-    icon1.src = await result.forecast.forecastday[0].day.condition.icon;
+    console.log(result);
+    date1.textContent = new Date(result.list[8].dt_txt).toLocaleDateString();
+    temp1.textContent = await (282-result.list[8].main.temp).toFixed(2);
+    text1.textContent = await result.list[8].weather[0].description;
+    let iconCode = await result.list[22].weather[0].icon;
+    icon1.src=`https://openweathermap.org/img/wn/${iconCode}@2x.png`;
 
-    date2.textContent = await result.forecast.forecastday[1].date;
-    temp2.textContent = await result.forecast.forecastday[1].day.avgtemp_c + "° C";
-    text2.textContent = await result.forecast.forecastday[1].day.condition.text;
-    icon2.src = await result.forecast.forecastday[1].day.condition.icon;
+    date2.textContent = new Date(result.list[15].dt_txt).toLocaleDateString();
+    temp2.textContent = await (282-result.list[15].main.temp).toFixed(2);
+    text2.textContent = await result.list[15].weather[0].description;
+    let iconCode2 = await result.list[22].weather[0].icon;
+    icon2.src=`https://openweathermap.org/img/wn/${iconCode2}@2x.png`;
 
-    date3.textContent = await result.forecast.forecastday[2].date;
-    temp3.textContent = await result.forecast.forecastday[2].day.avgtemp_c + "° C";
-    text3.textContent = await result.forecast.forecastday[2].day.condition.text;
-    icon3.src = await result.forecast.forecastday[2].day.condition.icon;
+    date3.textContent = new Date(result.list[22].dt_txt).toLocaleDateString();
+    temp3.textContent = await (282-result.list[22].main.temp).toFixed(2);
+    text3.textContent = await result.list[22].weather[0].description;
+    let iconCode3 = await result.list[22].weather[0].icon;
+    icon3.src=`https://openweathermap.org/img/wn/${iconCode3}@2x.png`;
     console.log(result.forecast);
   } catch (error) {
     console.error(error);
@@ -145,8 +149,8 @@ let getWeatherInfo2 = async (url) =>{
   const options = {
     method: 'GET',
     headers: {
-      'x-rapidapi-key': '5bae2b20b3mshfa5923da98afd77p138521jsnce7c2c61fc0e',
-      'x-rapidapi-host': 'open-weather13.p.rapidapi.com'
+      'x-rapidapi-key': 'f7dc614926msh90cfc1454493b1fp188b93jsna7c2f23998f6',
+		'x-rapidapi-host': 'open-weather13.p.rapidapi.com'
     }
   };
   try {

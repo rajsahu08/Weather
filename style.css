@@ -125,13 +125,13 @@ body {
   margin-left: 10px;
 }
 .footer {
-  border: 2px solid #008000;
+  /* border: 2px solid #008000; */
   display: flex;
 
 }
 .threeDay {
   width: 50%;
-  border: 2px solid yellow;
+  /* border: 2px solid yellow; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -140,7 +140,7 @@ body {
 .future{
   height: 90px;
   width: 90%;
-  border: 2px solid white;
+  /* border: 2px solid white; */
   margin: 10px 0;
   padding: 13px;
   border-radius: 16px;
