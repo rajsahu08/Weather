@@ -58,7 +58,7 @@ if (navigator.geolocation) {
     lon = position.coords.longitude;
     console.log("Latitude: " + lat + ", Longitude: " + lon);
     let url = `https://open-weather13.p.rapidapi.com/city/latlon/${lat}/${lon}`;
-    getWeatherInfo(url);
+    // getWeatherInfo(url);
   }, function(error) {
     console.log("Error occurred. Error code: " + error.code);
   });
@@ -113,19 +113,19 @@ let getWeatherForecast= async(url)=>{
     const result = await response.json();
     console.log(result);
     date1.textContent = new Date(result.list[8].dt_txt).toLocaleDateString();
-    temp1.textContent = await (282-result.list[8].main.temp).toFixed(2);
+    temp1.textContent = await ((282-result.list[8].main.temp).toFixed(2)-20);
     text1.textContent = await result.list[8].weather[0].description;
     let iconCode = await result.list[22].weather[0].icon;
     icon1.src=`https://openweathermap.org/img/wn/${iconCode}@2x.png`;
 
     date2.textContent = new Date(result.list[15].dt_txt).toLocaleDateString();
-    temp2.textContent = await (282-result.list[15].main.temp).toFixed(2);
+    temp2.textContent = await ((282-result.list[15].main.temp).toFixed(2)-20);
     text2.textContent = await result.list[15].weather[0].description;
     let iconCode2 = await result.list[22].weather[0].icon;
     icon2.src=`https://openweathermap.org/img/wn/${iconCode2}@2x.png`;
 
     date3.textContent = new Date(result.list[22].dt_txt).toLocaleDateString();
-    temp3.textContent = await (282-result.list[22].main.temp).toFixed(2);
+    temp3.textContent = await ((282-result.list[22].main.temp).toFixed(2)-20);
     text3.textContent = await result.list[22].weather[0].description;
     let iconCode3 = await result.list[22].weather[0].icon;
     icon3.src=`https://openweathermap.org/img/wn/${iconCode3}@2x.png`;
@@ -169,7 +169,7 @@ let getWeatherInfo2 = async (url) =>{
     humidity.textContent = result.main.humidity;
     visibility.textContent = result.visibility;
     clouds.textContent = result.clouds.all;
-    let url2 = `https://weatherapi-com.p.rapidapi.com/forecast.json?q=${result.location.name}&days=3`;
+    let url2 = `https://open-weather13.p.rapidapi.com/city/fivedaysforcast/${result.coord.lon}/${result.coord.lat}`;
     getWeatherForecast(url2);
   } 
   catch (error) {
